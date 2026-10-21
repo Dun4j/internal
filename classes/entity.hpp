@@ -10,11 +10,11 @@ public:
   }
   
   const char* get_name(void) {
-    return (const char*)(this + 0x878);
+    return (const char*)(this + 0x87C);
   }
 
   void set_fov(int fov) {
-    *(int*)(this + 0x90C) = fov;
+    *(int*)(this + 0x914) = fov;
   }
 };
 
