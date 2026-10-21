@@ -36,11 +36,11 @@ enum Bone {
 class Pawn {
 public:
   void* get_game_scene_node(void) {
-    return *(void**)(this + 0x4A8);
+    return *(void**)(this + 0x4A0);
   }
 
   void* get_camera_services(void) {
-    return *(void**)(this + 0x13F0);
+    return *(void**)(this + 0x12B0);
   }
 
   float get_fov(void) {
@@ -49,21 +49,21 @@ public:
       return 0.0;
     }
 
-    return *(int*)((unsigned long)camera_services + 0x290);
+    return *(int*)((unsigned long)camera_services + 0x2A0);
   }  
 
   Vec3 get_abs_origin(void) {
     void* game_scene_node = this->get_game_scene_node();
     if (game_scene_node == nullptr) return Vec3{};
 
-    return *(Vec3*)((unsigned long)game_scene_node + 0xD0);
+    return *(Vec3*)((unsigned long)game_scene_node + 0xC8);
   }
 
   bool is_dormant(void) {
     void* game_scene_node = this->get_game_scene_node();
     if (game_scene_node == nullptr) return true;
 
-    return *(bool*)((unsigned long)game_scene_node + 0x10B);
+    return *(bool*)((unsigned long)game_scene_node + 0x103);
   }
 
   Vec3 get_bone_location(unsigned int i) {
@@ -78,7 +78,7 @@ public:
 
   Vec3 get_eye_position(void) {
     Vec3 location = this->get_abs_origin();
-    Vec3 offset = *(Vec3*)(this + 0xD28);
+    Vec3 offset = *(Vec3*)(this + 0xEE0);
     return Vec3{location.x + offset.x, location.y + offset.y, location.z + offset.z};
   }
 
@@ -97,15 +97,15 @@ public:
   }
   
   bool get_lifestate(void) {
-    return *(bool*)(this + 0x4CC);
+    return *(bool*)(this + 0x4C4);
   }
 
   enum cs_team get_cs_team(void) {
-    return (cs_team)*(int*)(this + 0x563);
+    return (cs_team)*(unsigned char*)(this + 0x557);
   }
 
   int get_health(void) {
-    return *(int*)(this + 0x4C4);
+    return *(int*)(this + 0x4BC);
   }
 
   bool get_gun_game_immunity(void) {
